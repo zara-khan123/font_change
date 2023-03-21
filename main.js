@@ -1,3 +1,9 @@
+noseX = 0;
+noseY = 0;
+leftWristX = 0;
+rightWristX = 0;
+difference = 0;
+
 function setup()
 {
     video = createCapture(VIDEO);
@@ -13,6 +19,9 @@ function setup()
 function draw()
 {
     background('grey');
+    textSize(300);
+    fill('purple');
+    text('Zara, 50, 300');
 }
 
 function modelLoaded()
@@ -26,5 +35,14 @@ function gotPoses(results)
     {
         console.log(results);
         console.log("working");
+        noseX = results[0].pose.nose.x;
+        noseY = results[0].pose.nose.y;
+        console.log("noseX = " + noseX + "noseY = " + noseY);
+
+        leftWristX = results[0].pose.leftWrist.x;
+        rightWristX = results[0].pose.rightWrist.x;
+        difference = floor(leftWristX - rightWristX);
+        console.log("leftWrist = " + leftWristX + "rightWrist" + rightWristX + "difference = " + difference);
+        
     }
 }
